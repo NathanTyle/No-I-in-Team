@@ -101,3 +101,57 @@ function initApp() {
             }
         });
     }
+    function addEngineer() {
+        console.log();
+        inquirer.prompt([
+            {
+                type: "input",
+                name: "engineerName",
+                message: "What is your engineer's name?",
+                validate: answer => {
+                    if (answer !== "") {
+                        return true;
+                    }
+                    return "Your Engineer's name is not valid, try again.";
+                }
+            },
+            {
+                type: "input",
+                name: "engineerId",
+                message: "What is the engineer's id?",
+                validate: answer => {
+                    if (answer !== "") {
+                        return true;
+                    }
+                    return "Your Engineer's Id is not valid, try again.";
+                }
+            },
+            {
+                type: "input",
+                name: "engineerEmail",
+                message: "What is your engineer's email?",
+                validate: answer => {
+                    if (answer !== "") {
+                        return true;
+                    }
+                    return "Email address can not be empty.";
+                }
+            },
+            {
+                type: "input",
+                name: "engineerGithub",
+                message: "What is your engineer's GitHub username?",
+                validate: answer => {
+                    if (answer !== "") {
+                        return true;
+                    }
+                    return "Your Engineer's Github Username is not valid, try again. ";
+                }
+            }
+        ]).then(answers => {
+            const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub);
+            teamArr.push(engineer);
+            idArr.push(answers.engineerId);
+            addTeam();
+        });
+    }
