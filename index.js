@@ -210,3 +210,17 @@ function initApp() {
             addTeam();
         });
     };
+    function generateHTML() {
+    
+        if (!fs.existsSync(DIST_DIR)) {
+            fs.mkdirSync(DIST_DIR)
+        }
+        console.log("Generate Team Profile... ");
+        fs.writeFileSync(outputPath,render(teamArr), "utf-8");
+    };
+    
+    addManager();
+    
+    }
+    
+    initApp();
