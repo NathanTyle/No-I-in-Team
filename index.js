@@ -155,3 +155,58 @@ function initApp() {
             addTeam();
         });
     }
+    function addIntern() {
+        console.log();
+        inquirer.prompt([
+            {
+                type: "input",
+                name: "internName",
+                message: "What's your intern's name?",
+                validate: answer => {
+                    if (answer !== "") {
+                        return true;
+                    }
+                    return "Your Intern's name is not valid, try again.";
+                }
+            },
+            {
+                type: "input",
+                name: "internId",
+                message: "What is your intern's id?",
+                validate: answer => {
+                    if (answer !== "") {
+                        return true;
+                    }
+                    return "Your Intern's Id is not valid, try again.";
+                }
+            },
+            {
+                type: "input",
+                name: "internEmail",
+                message: "What is the interns email?",
+                validate: answer => {
+                    if (answer !== "") {
+                        return true;
+                    }
+                    return "Email address can not be empty.";
+                }
+            },
+            {
+                type: "input",
+                name: "internSchool",
+                message: "What school did your intern go to?",
+                validate: answer => {
+                    if (answer !== "") {
+                        return true;
+                    }
+                    return "Your Intern's School is not valid, try again.";
+                }
+            }
+    
+        ]).then(answers => {
+            const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool);
+            teamArr.push(intern);
+            idArr.push(answers.internId);
+            addTeam();
+        });
+    };
