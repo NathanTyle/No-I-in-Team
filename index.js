@@ -76,3 +76,28 @@ function initApp() {
             addTeam();
         });
     };
+    function addTeam() {
+        inquirer.prompt([
+            {
+                type:"list",
+                name:"memberChoice",
+                message: " Manager added. Who's next? ",
+                choices: [
+                    "Engineer",
+                    "Intern",
+                    "End app"
+                ]
+            }
+        ]).then(userChoice => {
+            switch (userChoice.memberChoice) {
+                case "Engineer":
+                    addEngineer();
+                    break;
+                    case "Intern":
+                        addIntern();
+                        break;
+                        default:
+                            generateHTML();
+            }
+        });
+    }
