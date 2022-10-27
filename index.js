@@ -3,12 +3,14 @@ const fs = require("fs");
 const jest = require('jest');
 const path = require('path');
 
+// Retrieval of the Constructor Classes
 const Employee = require('./lib/Employee');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
 const { default: generate } = require("@babel/generator");
+// Retrieval of the HTML tepmlate to render a new index.html
 const render = require('./src/page-template');
 
 const DIST_DIR = path.resolve(__dirname,'dist');
@@ -17,8 +19,10 @@ const outputPath = path.join(DIST_DIR, 'index.html');
 const teamArr = [];
 const idArr = [];
 
+// function that runs the app
 function initApp() {
 
+    // Prompts that ask questions to add the manager
     function addManager() {
         console.log();
         inquirer.prompt([
@@ -101,6 +105,7 @@ function initApp() {
             }
         });
     }
+    // Prompts that ask questions to add the Engineer
     function addEngineer() {
         console.log();
         inquirer.prompt([
@@ -155,6 +160,7 @@ function initApp() {
             addTeam();
         });
     }
+    // Prompts that ask questions to add the Intern
     function addIntern() {
         console.log();
         inquirer.prompt([
@@ -210,6 +216,7 @@ function initApp() {
             addTeam();
         });
     };
+    // function that generates the new HTML
     function generateHTML() {
     
         if (!fs.existsSync(DIST_DIR)) {
